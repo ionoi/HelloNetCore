@@ -11,6 +11,10 @@ pipeline {
             steps {
                 script {
                     echo "Hello Jenkins"
+
+                    sh "ls -la ${pwd()}"
+
+                    
                 }
             }
         }
