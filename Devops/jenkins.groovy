@@ -12,9 +12,8 @@ pipeline {
                 script {
                     echo "Hello Jenkins"
 
-                    sh "ls -la ${pwd()}"
+                    bat("dir")
 
-                    
                 }
             }
         }
