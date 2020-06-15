@@ -12,7 +12,11 @@ pipeline {
                 script {
                     echo "Hello Jenkins"
 
-                    bat("dir")
+                    bat '''
+                    dir
+                    cd HelloNetCore
+                    dotnet run
+                    '''
 
                 }
             }
