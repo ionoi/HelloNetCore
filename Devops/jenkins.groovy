@@ -31,8 +31,16 @@ pipeline {
             steps {
                 script {
                     echo "INFO: Check and Create Data Folder"
-                    CheckAndCreate("${DataPath}")
-                    // CheckAndCreate("${SeoPath}", "${OutPutFolderName}")
+                    // CheckAndCreate("${DataPath}")
+                    // CheckAndCreate("${OutPutPath}")
+
+                    bat bat '''
+                    if (-not (Test-Path C:\\Workspace\\Jenkins_build_root\\__seo__\\data)) {
+                        New-Item  -Path C:\\Workspace\\Jenkins_build_root\\__seo__ -Name "data" -ItemType "directory"
+                        echo "create folder: C:\\Workspace\\Jenkins_build_root\\__seo__\\data"
+                    } else {
+                        echo "C:\\Workspace\\Jenkins_build_root\\__seo__\\data already exists"
+                    }'''
                 }
             }
         }
@@ -80,7 +88,7 @@ pipeline {
 
 
 def CheckAndCreate(folder_name) {
-    echo "${folder_name}"
+    echo "INFO: Check folder: ${folder_name}"
     def fp = new File("${folder_name}")
     if (fp.exists()) {
         echo "INFO: ${folder_name} already exists"
