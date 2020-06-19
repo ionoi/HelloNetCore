@@ -34,13 +34,7 @@ pipeline {
                     // CheckAndCreate("${DataPath}")
                     // CheckAndCreate("${OutPutPath}")
 
-                    bat '''
-                    if (-not (Test-Path C:\\Workspace\\Jenkins_build_root\\__seo__\\data)) {
-                        New-Item  -Path C:\\Workspace\\Jenkins_build_root\\__seo__ -Name "data" -ItemType "directory"
-                        echo "create folder: C:\\Workspace\\Jenkins_build_root\\__seo__\\data"
-                    } else {
-                        echo "C:\\Workspace\\Jenkins_build_root\\__seo__\\data already exists"
-                    }'''
+                    bat "Test-Path C:\\Workspace\\Jenkins_build_root\\__seo__\\data"
                 }
             }
         }
