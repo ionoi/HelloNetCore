@@ -34,7 +34,7 @@ pipeline {
                     // CheckAndCreate("${DataPath}")
                     // CheckAndCreate("${OutPutPath}")
 
-                    bat "Test-Path C:\\Workspace\\Jenkins_build_root\\__seo__\\data"
+                    powershell "Test-Path C:\\Workspace\\Jenkins_build_root\\__seo__\\data"
                 }
             }
         }
