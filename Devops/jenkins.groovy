@@ -12,20 +12,18 @@ pipeline {
         def OutputBasePath = "${SeoPath}\\output"
         def OutputPath = "${OutputBasePath}\\${OutputFolderName}"
 
-
     }
 
-
-    optionsp
+    options
 	{
 		timestamps()
         skipDefaultCheckout()
         buildDiscarder(logRotator(numToKeepStr: "30", daysToKeepStr: '7'))
 	}
 
-        parameters {
-            choice (name : 'cleanup', choices : 'no\nyes', description : 'cleanup the data folder?')
-        }
+    parameters {
+        choice (name : 'cleanup', choices : 'no\nyes', description : 'cleanup the data folder?')
+    }
 
     stages {
         stage('Prepare') {
