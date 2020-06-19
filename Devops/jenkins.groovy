@@ -79,11 +79,11 @@ pipeline {
 def CheckAndCreate(path, name) {
     def folder_name = "${path}\\${name}" 
     echo "${folder_name}"
-    bat '''
+    bat """
     if (-not (Test-Path ${folder_name})) {
         New-Item  -Path ${path} -Name "${folder_name}" -ItemType "directory"
         echo "create folder: ${folder_name}"
     } else {
         echo "${folder_name} already exists"
-    }'''
+    }"""
 }
