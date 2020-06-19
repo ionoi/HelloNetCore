@@ -84,7 +84,7 @@ def CheckAndCreate(folder_name) {
     def fp = new File("${folder_name}")
     if (fp.exists()) {
         echo "INFO: ${folder_name} already exists"
-    }
+    } else {
         fp.mkdirs()
         echo "INFO: ${folder_name} created"
     }
