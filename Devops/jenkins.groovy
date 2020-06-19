@@ -4,6 +4,7 @@ pipeline {
     environment {
         def SeoPath = "${env.seo_root}"
         def DataFolderName = "data"
+        def DataPath = "${SeoPath}\\${DataFolderName}"
 
         def OutPutFolderName = "output"
         def OutputPath = "${SeoPath}\\${OutPutFolderName}"
@@ -28,8 +29,8 @@ pipeline {
             steps {
                 script {
                     echo "INFO: Check and Create Data Folder"
-                    CheckAndCreate("${SeoPath}", "${DataFolderName}")
-                    CheckAndCreate("${SeoPath}", "${OutPutFolderName}")
+                    CheckAndCreate("${DataPath}")
+                    // CheckAndCreate("${SeoPath}", "${OutPutFolderName}")
                 }
             }
         }
@@ -76,16 +77,7 @@ pipeline {
 }
 
 
-def CheckAndCreate(path, name) {
-    def folder_name = "${path}\\${name}" 
+def CheckAndCreate(folder_name) {
     echo "${folder_name}"
-    def script =  """if (-not (Test-Path ${folder_name})) {
-        New-Item  -Path ${path} -Name "${name}" -ItemType "directory"
-        echo "create folder: ${folder_name}"
-    } else {
-        echo "${folder_name} already exists"
-    }"""
-
-    echo "scipt: ${script}"
-    bat "${script}"
+    new File("${folder_name}").mkdir()
 }
