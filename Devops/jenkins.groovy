@@ -1,3 +1,5 @@
+import groovy.io.FileType
+
 pipeline {
     agent any
 
@@ -79,5 +81,11 @@ pipeline {
 
 def CheckAndCreate(folder_name) {
     echo "${folder_name}"
-    new File("${folder_name}").mkdirs()
+    def fp = new File("${folder_name}")
+    if (fp.exists()) {
+        echo "INFO: ${folder_name} already exists"
+    }
+        fp.mkdirs()
+        echo "INFO: ${folder_name} created"
+    }
 }
