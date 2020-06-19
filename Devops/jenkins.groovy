@@ -8,14 +8,15 @@ pipeline {
         def DataFolderName = "data"
         def DataPath = "${SeoPath}\\${DataFolderName}"
 
-        def OutPutFolderName = "output"
-        def OutputPath = "${SeoPath}\\${OutPutFolderName}"
+        def OutputFolderName = "output-{env.BUILD_NUMBER}"
+        def OutputBasePath = "${SeoPath}\\output"
+        def OutputPath = "${OutputBasePath}\\${OutputFolderName}"
 
 
     }
 
 
-    options
+    optionsp
 	{
 		timestamps()
         skipDefaultCheckout()
@@ -32,8 +33,9 @@ pipeline {
                 script {
                     echo "INFO: Check and Create Data Folder"
                     // CheckAndCreate("${DataPath}")
-                    // CheckAndCreate("${OutPutPath}")
+                    // CheckAndCreate("${OutputPath}")
                     CheckAndCreate("${SeoPath}", "${DataFolderName}")
+                    CheckAndCreate("${OutputBasePath}", "${OutputFolderName}")
 
                     // powershell "Test-Path C:\\Workspace\\Jenkins_build_root\\__seo__\\data"
                 }
@@ -103,6 +105,6 @@ def CheckAndCreate(path, name) {
         echo "${folder_name} already exists"	
     }"""	
 
-    echo "scipt: ${script}"	
+    // echo "scipt: ${script}"	
     powershell "${script}"	
 } 
