@@ -8,7 +8,7 @@ pipeline {
         def DataFolderName = "data"
         def DataPath = "${SeoPath}\\${DataFolderName}"
 
-        def OutputFolderName = "output-{env.BUILD_NUMBER}"
+        def OutputFolderName = "output-${env.BUILD_NUMBER}"
         def OutputBasePath = "${SeoPath}\\output"
         def OutputPath = "${OutputBasePath}\\${OutputFolderName}"
 
