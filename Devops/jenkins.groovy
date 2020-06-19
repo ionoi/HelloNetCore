@@ -33,8 +33,9 @@ pipeline {
                     echo "INFO: Check and Create Data Folder"
                     // CheckAndCreate("${DataPath}")
                     // CheckAndCreate("${OutPutPath}")
+                    CheckAndCreate("${SeoPath}", "${DataFolderName}")
 
-                    powershell "Test-Path C:\\Workspace\\Jenkins_build_root\\__seo__\\data"
+                    // powershell "Test-Path C:\\Workspace\\Jenkins_build_root\\__seo__\\data"
                 }
             }
         }
@@ -81,13 +82,27 @@ pipeline {
 }
 
 
-def CheckAndCreate(folder_name) {
-    echo "INFO: Check folder: ${folder_name}"
-    def fp = new File("${folder_name}")
-    if (fp.exists()) {
-        echo "INFO: ${folder_name} already exists"
-    } else {
-        fp.mkdirs()
-        echo "INFO: ${folder_name} created"
-    }
-}
+// def CheckAndCreate(folder_name) {
+//     echo "INFO: Check folder: ${folder_name}"
+//     def fp = new File("${folder_name}")
+//     if (fp.exists()) {
+//         echo "INFO: ${folder_name} already exists"
+//     } else {
+//         fp.mkdirs()
+//         echo "INFO: ${folder_name} created"
+//     }
+// }
+
+def CheckAndCreate(path, name) {
+    def folder_name = "${path}\\${name}" 	
+    echo "${folder_name}"
+    def script =  """if (-not (Test-Path ${folder_name})) {
+        New-Item  -Path ${path} -Name "${name}" -ItemType "directory"	
+        echo "create folder: ${folder_name}"	
+    } else {	
+        echo "${folder_name} already exists"	
+    }"""	
+
+    echo "scipt: ${script}"	
+    powershell "${script}"	
+} 
