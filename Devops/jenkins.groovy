@@ -29,8 +29,8 @@ pipeline {
             steps {
                 script {
                     echo "INFO: Check and Create Data Folder"
-                    CheckAndCreate(${SeoPath}, ${DataFolderName})
-                    CheckAndCreate(${SeoPath}, ${OutPutFolderName})
+                    CheckAndCreate("${SeoPath}", "${DataFolderName}")
+                    CheckAndCreate("${SeoPath}", "${OutPutFolderName}")
                 }
             }
         }
