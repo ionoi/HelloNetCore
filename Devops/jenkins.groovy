@@ -4,10 +4,9 @@ pipeline {
     environment {
         def SeoPath = "${env.seo_root}"
         def DataFolderName = "data"
-        def DataPath = "${SeoPath}/${DataFolderName}"
 
         def OutPutFolderName = "output"
-        def OutputPath = "${SeoPath}/${OutPutFolderName}"
+        def OutputPath = "${SeoPath}\\${OutPutFolderName}"
 
 
     }
@@ -78,7 +77,7 @@ pipeline {
 
 
 def CheckAndCreate(path, name) {
-    def folder_name = "${path}/${name}" 
+    def folder_name = "${path}\\${name}" 
     echo "${folder_name}"
     bat '''
     if (-not (Test-Path ${folder_name})) {
