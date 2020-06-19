@@ -79,5 +79,5 @@ pipeline {
 
 def CheckAndCreate(folder_name) {
     echo "${folder_name}"
-    new File("${folder_name}").mkdir()
+    new File("${folder_name}").mkdirs()
 }
