@@ -34,26 +34,10 @@ pipeline {
                     // CheckAndCreate("${OutputPath}")
                     CheckAndCreate("${SeoPath}", "${DataFolderName}")
                     CheckAndCreate("${OutputBasePath}", "${OutputFolderName}")
-
-                    // powershell "Test-Path C:\\Workspace\\Jenkins_build_root\\__seo__\\data"
                 }
             }
         }
-
-        stage('aws') {
-            steps {
-                script {
-                    echo "Zip"
-                    bat '''
-                    dir
-                    aws --version
-                    '''
-
-                }
-            }
-        }
-
-        stage('Run') {
+        stage('Crawl') {
             steps {
                 script {
                     echo "Hello Jenkins"
@@ -67,6 +51,18 @@ pipeline {
                 }
             }
         }
+        stage('Upload S3') {
+            steps {
+                script {
+                    echo "Zip"
+                    powershell '''
+                    dir
+                    aws --version
+                    '''
+                }
+            }
+        }
+
 
     }
 
