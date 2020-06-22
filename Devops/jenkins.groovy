@@ -58,6 +58,7 @@ pipeline {
                     powershell '''
                     dir
                     aws --version
+                    $Env:Path
                     '''
                 }
             }
